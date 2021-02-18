@@ -1,13 +1,71 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --font-color: #ffffff;
+  --font2-color: #e3e3e3;
+  --bg-color: #202020;
+  --bg2-color: #6d6b6b;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 25px;
 }
+
+h1 {
+  text-align: center;
+  color: var(--font2-color);
+}
+
+h2,
+h3 {
+  color: var(--font2-color);
+}
+
+input {
+  color: var(--font-color);
+  background: var(--bg2-color);
+  border: none;
+}
+
+.inline-label {
+  margin-right: 5px;
+}
+
+.w-6em {
+  width: 6em;
+}
+
+.card {
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 15px;
+}
+
+.timespan {
+  width: 40%;
+  margin: auto;
+}
+
+.investmentClass-card {
+  border: 1px solid lightgray;
+  width: 350px;
+  margin: 5px;
+  padding: 10px;
+}
+
+.investmentClass-summary {
+  display: grid;
+  grid-template-columns: 150px 150px;
+  border: 1px solid var(--bg2-color);
+  padding: 5px;
+}
+
+.investmentCategory-details {
+  display: grid;
+  grid-template-columns: 150px 150px;
+  border: 1px solid var(--bg2-color);
+  padding: 5px;
+}
+

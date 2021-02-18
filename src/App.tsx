@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {CalculatorProvider} from './context/calculatorContext';
+
+import InvestmentsTab from './tabs/investmentsTab'
+import ContextDbg from './tabs/contextDbg'
+import Injection from './components/injection'
+
+import { Tab, Tabs } from 'react-bootstrap';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CalculatorProvider >
+      <div className="App">
+        <h1>Investment Calculator</h1>
+        <Tabs defaultActiveKey="investments" id="uncontrolled-tab-example">
+          <Tab eventKey="investments" title="Investments">
+            <InvestmentsTab />
+          </Tab>
+          <Tab eventKey="injection" title="Injections">
+            <Injection />
+          </Tab>
+          <Tab eventKey="dbg" title="Context Dbg">
+            <ContextDbg />
+          </Tab>
+        </Tabs>
+      </div>
+    </CalculatorProvider> 
   );
 }
 
