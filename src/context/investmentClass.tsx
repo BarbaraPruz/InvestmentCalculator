@@ -11,6 +11,7 @@ export function newInvestmentClass(): InvestmentClass {
         id: uuidv4(),
         name:'New Investment Class',
         initialInvestment: 0,
+        totalInvestment: 0,
         categories: [newInvestmentCategory()]
     }
 }

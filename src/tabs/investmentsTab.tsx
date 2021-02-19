@@ -1,24 +1,39 @@
 import React from 'react';
-import {CalculatorContext} from '../context/calculatorContext';
+import {CalculatorStore} from '../context/calculatorStore';
 import InvestmentClassContainer from '../components/investmentClassContainer';
 import TimeSpan from '../components/timespan'
 
 
 export const InvestmentsTab = (): JSX.Element => {
-    const {investmentClasses, addInvestmentClass, deleteInvestmentClass, changeInvestmentClass}= React.useContext(CalculatorContext);
-/*
-To determine:
-    when initial investment changes, total investment and other things change
-    these rules can be here or they can be in context....
+    const {state, dispatch}= React.useContext(CalculatorStore);
+    const {investmentClasses}= state;
+    const onChange = (inv:InvestmentClass, field:string, value: string):void => {
+        switch (field) {
+            case 'name':
+                dispatch({type:'InvestmentClassChange',id:inv.id,field,value})
+                break;
+            case 'initialInvestment':
+                dispatch({
+                    type:'InvestmentClassChange',
+                    id:inv.id,field,value
+                })
+                break;
+            default:
+                break;
+        }
+    }
+/* To Do Next:
+    context dbg: show span and investment class contents
+    InvestmentsTab handles calculator level actions
+    InvestmentClass handles InvestmentClass changes - name investment categories
 */
-
     return (
     <>
         <TimeSpan />
         <div className="card">
             <div className="d-flex justify-content-between">
                 <h2>Investments</h2>
-                <button className="btn" onClick={()=>addInvestmentClass()}>
+                <button className="btn" onClick={()=>dispatch({type:'CalculatorAddInvestmentClass'})}>
                     <i className="fa fa-plus" />
                     Add Investment Class
                 </button>                
@@ -29,8 +44,8 @@ To determine:
                     return <InvestmentClassContainer 
                         key={`invclass-${i}`} 
                         invcls={c} 
-                        onDelete={deleteInvestmentClass}
-                        onChange={changeInvestmentClass}
+                        onDelete={()=>dispatch({type:'CalculatorDeleteInvestmentClass',id:c.id})}
+                        onChange={onChange}
                     />
                 } )}                 
             </div>

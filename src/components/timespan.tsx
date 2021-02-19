@@ -1,6 +1,8 @@
 import React from "react";
 
-import { CalculatorContext } from "../context/calculatorContext";
+import { CalculatorStore } from "../context/calculatorStore";
+import { Actions } from "../context/reducer";
+
 import { MIN_YEAR, MAX_YEAR, MIN_YEAR_SPAN, MAX_YEAR_SPAN } from "../constants";
 
 interface NumberSetter {
@@ -8,22 +10,32 @@ interface NumberSetter {
 }
 
 export const Timespan: React.FC = () => {
-  const { startYear, numberYears, setYear, setSpan } = React.useContext(
-    CalculatorContext
+  const { state:{startYear, numberYears}, dispatch } = React.useContext(
+    CalculatorStore
   );
   const [inputYear, setInputYear] = React.useState<number>(startYear);
   const [inputSpan, setInputSpan] = React.useState<number>(numberYears);
 
-  const checkVal = (
+  const checkYear = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    min: number,
+    max: number,
+    localSetter: NumberSetter
+  ) => {
+    const val = Number(e.target.value);
+    localSetter(val);
+    if (val >= min && val <= max) dispatch({type:'CalculatorSetStartYear',year:val});
+  };
+
+  const checkSpan = (
     e: React.ChangeEvent<HTMLInputElement>,
     min: number,
     max: number,
     localSetter: NumberSetter,
-    setter: NumberSetter
   ) => {
     const val = Number(e.target.value);
     localSetter(val);
-    if (val >= min && val <= max) setter(val);
+    if (val >= min && val <= max) dispatch({type:'CalculatorSetNumberYears',span:val});
   };
 
   return (
@@ -34,7 +46,7 @@ export const Timespan: React.FC = () => {
           <input
             className="form-control w-6em"
             onChange={(e) =>
-              checkVal(e, MIN_YEAR, MAX_YEAR, setInputYear, setYear)
+              checkYear(e, MIN_YEAR, MAX_YEAR, setInputYear)
             }
             type="number"
             min={MIN_YEAR}
@@ -49,7 +61,7 @@ export const Timespan: React.FC = () => {
           <input
             className="form-control w-6em"
             onChange={(e) =>
-              checkVal(e, MIN_YEAR_SPAN, MAX_YEAR_SPAN, setInputSpan, setSpan)
+              checkSpan(e, MIN_YEAR_SPAN, MAX_YEAR_SPAN, setInputSpan)
             }
             type="number"
             min={MIN_YEAR_SPAN}

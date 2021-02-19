@@ -1,5 +1,5 @@
 import React from 'react';
-import {CalculatorProvider} from './context/calculatorContext';
+import {CalculatorStoreProvider} from './context/calculatorStore';
 
 import InvestmentsTab from './tabs/investmentsTab'
 import ContextDbg from './tabs/contextDbg'
@@ -9,7 +9,7 @@ import { Tab, Tabs } from 'react-bootstrap';
 
 function App() {
   return (
-    <CalculatorProvider >
+    <CalculatorStoreProvider >
       <div className="App">
         <h1>Investment Calculator</h1>
         <Tabs defaultActiveKey="investments" id="uncontrolled-tab-example">
@@ -24,7 +24,7 @@ function App() {
           </Tab>
         </Tabs>
       </div>
-    </CalculatorProvider> 
+    </CalculatorStoreProvider> 
   );
 }
 

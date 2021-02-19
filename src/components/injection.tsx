@@ -1,9 +1,10 @@
 import React from 'react'
 
-import {CalculatorContext} from '../context/calculatorContext';
+import {CalculatorStore} from '../context/calculatorStore';
 
 export const Injection = (): JSX.Element => {
-    const {startYear, numberYears}= React.useContext(CalculatorContext)
+    const {state}= React.useContext(CalculatorStore)
+    const {startYear, numberYears}= state
     const years = []
     for (let i=1; i<numberYears; ++i)
         years.push(startYear+i)
