@@ -1,6 +1,8 @@
 type InvestmentCategory = {
     id: string,
     name: string,
+    weightage: number,
+    amount: number
 }
 
 type InvestmentClass = {

@@ -20,5 +20,7 @@ export function newInvestmentCategory(): InvestmentCategory {
     return {
         id: uuidv4(),
         name:'New Investment Category',
+        weightage: 0,
+        amount: 0
     }
 }

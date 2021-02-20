@@ -36,6 +36,10 @@ input {
   width: 6em;
 }
 
+.w-4em {
+  width: 4em;
+}
+
 .card {
   border: 1px solid lightblue;
   border-radius: 5px;
