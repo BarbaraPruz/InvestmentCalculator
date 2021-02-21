@@ -13,3 +13,11 @@ type InvestmentClass = {
     categories: Array<InvestmentCategory>
 }
 
+export enum InjectionFrequency {
+    Annually = "Annually",
+    SemiAnnually = "Semi Annually",
+    Quarterly = "Quarterly",
+    Monthly = "Monthly",
+    OneTime = "One Time"
+}
+
