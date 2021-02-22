@@ -3,8 +3,14 @@ import NumberInputField from '../components/numberInputField';
 import MoneyInputField from '../components/moneyInputField';
 import {CalculatorStore} from '../context/calculatorStore'; 
 import {Form} from 'react-bootstrap';
-import { InjectionFrequency } from '../global.d';
-
+//import { InjectionFrequency } from '../global.d';
+enum InjectionFrequency {
+    Annually = 1,
+/*     SemiAnnually = 2,
+    Quarterly = 4,
+    Monthly = 12, */
+    None = 0
+}
 export const DescriptionTab = (): JSX.Element => {
     const {state, dispatch}= React.useContext(CalculatorStore);
     const {numberYears, initialInvestment, rate, injectionAmount, injectionFrequency}= state; 
@@ -18,6 +24,7 @@ export const DescriptionTab = (): JSX.Element => {
         let keys = Object.keys(myEnum).filter(x => myEnum[x] == enumValue);
         return keys.length > 0 ? myEnum[keys[0]] : Object.keys(myEnum)[0];
     }
+
     return (
     <div className="card w-50 m-auto">
         <h2>Savings Plan</h2>
@@ -44,7 +51,7 @@ export const DescriptionTab = (): JSX.Element => {
         </div>
 
         <div className="row">
-            <label className="col-sm-6 text-right pr-0">Annual Interest Rate:</label>
+            <label className="col-sm-6 text-right pr-0">Annual Interest Rate(compounded monthly):</label>
             <div className="col-sm-6 text-left pl-1">
                 <NumberInputField
                     onChange={(value:string) => dispatch({type:'SetRate',rate:Number(value)})}
@@ -72,7 +79,7 @@ export const DescriptionTab = (): JSX.Element => {
              onBlur={onFrequencySelected}>
                 {
                     Object.keys(InjectionFrequency).map ( f  => {
-                        return <option  key={f.toString()} value={f.toString()}>{f}</option>
+                        return isNaN(Number(f)) ? <option key={f.toString()} value={f.toString()}>{f}</option> : ''
                     })
                 }
             </Form.Control>
