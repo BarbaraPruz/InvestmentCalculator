@@ -1,30 +1,22 @@
 import React from 'react';
 import {CalculatorStoreProvider} from './context/calculatorStore';
 
-import InvestmentsTab from './tabs/investmentsTab'
-import ContextDbg from './tabs/contextDbg'
-import Injection from './components/injection'
-
-import { Tab, Tabs } from 'react-bootstrap';
+import DescriptionTab from './tabs/descriptionTab'
+import TableTab from './tabs/tableTab'
+import ChartsTab from './tabs/chartsTab'
 
 function App() {
   return (
-    <CalculatorStoreProvider >
+    <CalculatorStoreProvider > 
       <div className="App">
-        <h1>Investment Calculator</h1>
-        <Tabs defaultActiveKey="investments" id="uncontrolled-tab-example">
-          <Tab eventKey="investments" title="Investments">
-            <InvestmentsTab />
-          </Tab>
-          <Tab eventKey="injection" title="Injections">
-            <Injection />
-          </Tab>
-          <Tab eventKey="dbg" title="Context Dbg">
-            <ContextDbg />
-          </Tab>
-        </Tabs>
+        <h1>Savings Calculator</h1>
+        <div className="d-flex">
+          <DescriptionTab />
+          <TableTab />          
+        </div>
+        <ChartsTab />
       </div>
-    </CalculatorStoreProvider> 
+     </CalculatorStoreProvider> 
   );
 }
 

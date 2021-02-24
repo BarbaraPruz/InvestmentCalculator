@@ -12,7 +12,6 @@ export function CalculatorStoreProvider(props: any) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const value = { state, dispatch };
-  console.log('calculator store provider render')
   return (
     <CalculatorStore.Provider value={value}>
       {props.children}

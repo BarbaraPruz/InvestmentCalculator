@@ -1,118 +1,129 @@
-import { findAllInRenderedTree } from 'react-dom/test-utils';
-import {newInvestmentClass, newInvestmentCategory} from './investmentClass'
-
+//import {InjectionFrequency} from '../global.d'
+enum InjectionFrequency {
+    None = 0,
+    Annually = 1,
+/*     SemiAnnually = 2,
+    Quarterly = 4,
+    Monthly = 12, */
+    
+}
 export interface IState {
-  startYear: number,
   numberYears: number,
-  investmentClasses: InvestmentClass[], 
+  initialInvestment: number,
+  rate: number,
+  injectionAmount: number,
+  injectionFrequency: InjectionFrequency,
+  yearSavings: YearSavings[]
 } 
 
-interface ICalculatorSetStartYear {
-    type: 'CalculatorSetStartYear',
-    year: number
+interface ISetNumberYears {
+    type: 'SetNumberYears',
+    years: number
 }
 
-interface ICalculatorSetNumberYears {
-    type: 'CalculatorSetNumberYears',
-    span: number
+interface ISetInitialInvestment{
+    type: 'SetInitialInvestment',
+    amount: number
+}
+ 
+interface ISetRate {
+    type: 'SetRate',
+    rate: number
 }
 
-interface ICalculatorAddInvestmentClass {
-    type: 'CalculatorAddInvestmentClass'
-    invCls: InvestmentClass
+interface ISetInjectionAmount {
+    type: 'SetInjectionAmount',
+    amount: number
 }
 
-interface ICalculatorDeleteInvestmentClass {
-    type: 'CalculatorDeleteInvestmentClass'
-    id: string
-}
+interface ISetInjectionFrequency {
+  type: 'SetInjectionFrequency'
+  frequency: InjectionFrequency
+} 
 
-interface IInvestmentClassChange {
-    type: 'InvestmentClassChange'
-    id: string,
-    field: string,
-    value: string
-}
-
-interface IInvestmentClassNewCategory {
-  type: 'InvestmentClassAddCategory'
-  id: string,
-  cat: InvestmentCategory
-}
-interface IInvestmentCategoryChange {
-  type: 'InvestmentCategoryChange'
-  id: string,
-  clsId: string,
-  field: string,
-  value: string
-}
 export type Actions = 
-    ICalculatorSetStartYear | ICalculatorSetNumberYears | ICalculatorAddInvestmentClass | ICalculatorDeleteInvestmentClass 
-    | IInvestmentClassChange | IInvestmentClassNewCategory
-    | IInvestmentCategoryChange;
-
+    ISetNumberYears
+      | ISetInitialInvestment 
+       | ISetRate 
+   | ISetInjectionAmount 
+     | ISetInjectionFrequency 
+; 
 export const initialState = {
-    startYear: 2020,
     numberYears: 5,
-    investmentClasses: [newInvestmentClass()],
+    initialInvestment: 0,
+    rate: 1.75,
+    injectionAmount: 0,
+    injectionFrequency: InjectionFrequency.None,
+    yearSavings: [{start: 0, deposits: 0, interest: 0, amount:0},
+      {start: 0, deposits: 0, interest: 0, amount:0},
+      {start: 0, deposits: 0, interest: 0, amount:0},
+      {start: 0, deposits: 0, interest: 0, amount:0},
+      {start: 0, deposits: 0, interest: 0, amount:0}
+   ]
 }
 
 export const reducer = (state: IState, action: Actions) => {
-    let newClasses: InvestmentClass[] 
-    let cls;
-    let cat;
+    
+    const calcInterest = (initial:number, rate: number):number => {
+      return Math.pow(1+(rate/100)/12,12)*initial
+    }
+    
+    const calcSavings = (
+      years:number, initial:number, amount:number, freq:InjectionFrequency, rate:number)
+      :YearSavings[] => {
+      const amt:number = amount * freq
+      let savings:YearSavings[] = new Array();
+      let firstAmount = calcInterest(initial,rate);
+      let year1:YearSavings = {
+      start:0,
+      deposits:initial,
+      amount:firstAmount,
+      interest:firstAmount-initial       
+      }
+      savings.push(year1)
+      for (let i=1; i<years; ++i) {
+        let start = savings[i-1].amount;
+        let amount = calcInterest(start+amt, rate)
+        savings.push({
+          start: start,
+          deposits: amt,
+          amount: amount,
+          interest: amount-amt-start
+        })
+      }
+      return savings;
+    }
     switch(action.type){
-      case 'CalculatorSetStartYear':
-        return {...state,startYear:action.year}
-      case 'CalculatorSetNumberYears':
-        return {...state,numberYears:action.span}
-      case 'CalculatorAddInvestmentClass':
-        newClasses = [...state.investmentClasses]
-        if (!newClasses.find(c=>c.id===action.invCls.id))
-          newClasses.push(action.invCls)
-        return {...state,investmentClasses:newClasses}
-      case 'CalculatorDeleteInvestmentClass':
-        newClasses = state.investmentClasses.filter( (c:InvestmentClass) => c.id !== action.id)
-        return {...state,investmentClasses:newClasses}
-
-      case 'InvestmentClassChange':
-        newClasses = [...state.investmentClasses]
-        cls = newClasses.find( cls => cls.id === action.id)
-        if (cls) {
-          if (action.field==='initialInvestment') {
-            cls.initialInvestment=Number(action.value)
-            cls.totalInvestment=Number(action.value)  // To Do: calc real total
-          }
-          else if (action.field==='name')
-            cls.name = action.value;          
+      case 'SetNumberYears':
+        return {
+          ...state,
+          numberYears:action.years,
+          yearSavings:calcSavings(action.years, state.initialInvestment,state.injectionAmount,state.injectionFrequency,state.rate)
         }
-        return {...state,investmentClasses:newClasses}
+      case 'SetInitialInvestment':
+        return {
+          ...state,
+          initialInvestment:action.amount,
+          yearSavings:calcSavings(state.numberYears, action.amount,state.injectionAmount,state.injectionFrequency,state.rate)
 
-      case 'InvestmentClassAddCategory':
-        newClasses = [...state.investmentClasses]
-        cls = newClasses.find( cls => cls.id === action.id)
-        if (cls) {
-          if (!cls.categories.find(c=>c.id===action.cat.id))
-            cls.categories.push(action.cat)
         }
-        return {...state,investmentClasses:newClasses}
-
-      case 'InvestmentCategoryChange':
-        newClasses = [...state.investmentClasses]
-        cls = newClasses.find( c => c.id === action.clsId)
-        if (cls) {
-          cat = cls.categories.find(c => c.id === action.id)
-          if (cat) {
-            if (action.field==='name') {
-              cat.name = action.value;         
-            }
-            else if (action.field==='weightage') {
-              cat.weightage = Number(action.value); 
-              cat.amount = cat.weightage/100 * cls.totalInvestment       
-            }
-          }
+      case 'SetRate':
+        return {
+          ...state,
+          rate:action.rate,
+          yearSavings:calcSavings(state.numberYears, state.initialInvestment,state.injectionAmount,state.injectionFrequency,action.rate)
         }
-        return {...state,investmentClasses:newClasses}
+      case 'SetInjectionAmount':
+        return {...state,
+          injectionAmount:action.amount,
+          yearSavings:calcSavings(state.numberYears, state.initialInvestment,action.amount,state.injectionFrequency,state.rate)
+        }
+      case 'SetInjectionFrequency':
+        return {
+          ...state,
+          injectionFrequency:action.frequency,
+          yearSavings:calcSavings(state.numberYears, state.initialInvestment,state.injectionAmount,action.frequency,state.rate)
+      }  
     };
 
 }
