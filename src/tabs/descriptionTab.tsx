@@ -27,9 +27,8 @@ export const DescriptionTab = (): JSX.Element => {
     }
 
     return (
-    <div className="card w-50 m-auto">
+    <div className="card w-50">
         <h2>Savings Plan</h2>
-
         <div className="row">
             <label className="col-sm-6 text-right pr-0">Years to Invest:</label>
             <div className="col-sm-6 text-left pl-1">

@@ -10,13 +10,12 @@ export const TableTab = (): JSX.Element => {
     while(i<numberYears) years[i++]=i;
 
     return (
-        <div>
-            <h2>Table Tab</h2>
+        <div className="card w-50">
+            <h2>Yearly Summary</h2>
             <table className="table">
                 <thead>
                     <tr>
                         <th>Year</th>
-                        <th>Rate</th>
                         <th>Interest</th>
                         <th>Deposits</th>
                         <th>Balance</th>
@@ -25,7 +24,6 @@ export const TableTab = (): JSX.Element => {
                 <tbody>
                     {years.map( (y,index) => <tr key={`year${y}`}>
                         <td>{y}</td>
-                        <td>{rate.toFixed(2)}</td>
                         <td>{yearSavings[index].interest.toFixed(2)}</td>
                         <td>{yearSavings[index].deposits}</td>
                         <td>{yearSavings[index].amount.toFixed(2)}</td>
