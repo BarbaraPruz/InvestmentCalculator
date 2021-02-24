@@ -25,11 +25,12 @@ export const TableTab = (): JSX.Element => {
                 <tbody>
                     {years.map( (y,index) => <tr key={`year${y}`}>
                         <td>{y}</td>
-                        <td>{rate}</td>
+                        <td>{rate.toFixed(2)}</td>
                         <td>{yearSavings[index].interest.toFixed(2)}</td>
                         <td>{yearSavings[index].deposits}</td>
                         <td>{yearSavings[index].amount.toFixed(2)}</td>
-                    </tr>)}
+                    </tr>
+                    )}
                 </tbody>
             </table>
         </div>

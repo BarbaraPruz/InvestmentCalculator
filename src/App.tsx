@@ -3,7 +3,7 @@ import {CalculatorStoreProvider} from './context/calculatorStore';
 
 import DescriptionTab from './tabs/descriptionTab'
 import TableTab from './tabs/tableTab'
-import ChartsTab from './tabs/tableTab'
+import ChartsTab from './tabs/chartsTab'
 import ContextDbg from './tabs/contextDbg'
 
 import { Tab, Tabs } from 'react-bootstrap';
