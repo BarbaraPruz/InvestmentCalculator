@@ -1,12 +1,9 @@
 //import {InjectionFrequency} from '../global.d'
 enum InjectionFrequency {
     None = 0,
-    Annually = 1,
-/*     SemiAnnually = 2,
-    Quarterly = 4,
-    Monthly = 12, */
-    
+    Annually = 1,  
 }
+
 export interface IState {
   numberYears: number,
   initialInvestment: number,

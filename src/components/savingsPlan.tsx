@@ -7,23 +7,16 @@ import {Form} from 'react-bootstrap';
 enum InjectionFrequency {
     None = 0,
     Annually = 1,
-/*     SemiAnnually = 2,
-    Quarterly = 4,
-    Monthly = 12, */
 }
 export const SavingsPlan = (): JSX.Element => {
     const {state, dispatch}= React.useContext(CalculatorStore);
     const {numberYears, initialInvestment, rate, injectionAmount, injectionFrequency}= state; 
     const [freq, setFreq] = React.useState(injectionFrequency)
 
-    const onFrequencySelected = () => {
-
-        dispatch({type:'SetInjectionFrequency',frequency:freq})
-    }
-
-    function getEnumKeyByEnumValue<T extends {[index:string]:string}>(myEnum:T, enumValue:string):keyof T {
-        let keys = Object.keys(myEnum).filter(x => myEnum[x] == enumValue);
-        return keys.length > 0 ? myEnum[keys[0]] : Object.keys(myEnum)[0];
+    const onFrequencySelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = InjectionFrequency[e.target.value as keyof typeof InjectionFrequency]
+        setFreq(newValue)
+        dispatch({type:'SetInjectionFrequency',frequency:newValue})
     }
 
     return (
@@ -74,13 +67,10 @@ export const SavingsPlan = (): JSX.Element => {
         <div className="row">
             <label className="col-sm-6 text-right pr-0">Injection Frequency:</label>
             <div className="col-sm-4 pl-1">
-            <Form.Control as="select" size='sm' onChange={e=>setFreq(InjectionFrequency[e.target.value as keyof typeof InjectionFrequency])}
-             onBlur={onFrequencySelected}>
+            <Form.Control as="select" size='sm' onChange={onFrequencySelected}>
                 {
                     Object.keys(InjectionFrequency).map ( f  => {
-             //           return isNaN(Number(f)) ? <option key={f.toString()} value={(InjectionFrequency[f as keyof typeof InjectionFrequency]).toString()}>{f}</option> : ''
                         return isNaN(Number(f)) ? <option key={f.toString()} value={f.toString()}>{f}</option> : ''
-
                     })
                 }
             </Form.Control>

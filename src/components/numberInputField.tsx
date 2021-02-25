@@ -21,7 +21,9 @@ export const NumberInputField: React.FC<NumberInputFieldProps> = (props): JSX.El
             step={props.step || '1'}
             value={value} 
             onChange={e=>setValue(e.target.value)} 
-            onBlur={e=>props.onChange(value)}/>
+            onBlur={e=>props.onChange(value)}
+            onKeyPress={event => {if (event.key === 'Enter') props.onChange(value)}}
+        />
     )
 }
 
