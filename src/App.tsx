@@ -1,9 +1,9 @@
 import React from 'react';
 import {CalculatorStoreProvider} from './context/calculatorStore';
 
-import DescriptionTab from './tabs/descriptionTab'
-import TableTab from './tabs/tableTab'
-import ChartsTab from './tabs/chartsTab'
+import SavingsPlan from './components/savingsPlan'
+import SummaryTable from './components/summaryTable'
+import ChartsContainer from './components/chartsContainer'
 
 function App() {
   return (
@@ -11,10 +11,10 @@ function App() {
       <div className="App">
         <h1>Savings Calculator</h1>
         <div className="d-flex">
-          <DescriptionTab />
-          <TableTab />          
+          <SavingsPlan />
+          <SummaryTable />          
         </div>
-        <ChartsTab />
+        <ChartsContainer />
       </div>
      </CalculatorStoreProvider> 
   );

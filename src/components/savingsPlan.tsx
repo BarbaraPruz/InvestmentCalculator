@@ -1,6 +1,6 @@
 import React from 'react';
-import NumberInputField from '../components/numberInputField';
-import MoneyInputField from '../components/moneyInputField';
+import NumberInputField from './numberInputField';
+import MoneyInputField from './moneyInputField';
 import {CalculatorStore} from '../context/calculatorStore'; 
 import {Form} from 'react-bootstrap';
 //import { InjectionFrequency } from '../global.d';
@@ -11,7 +11,7 @@ enum InjectionFrequency {
     Quarterly = 4,
     Monthly = 12, */
 }
-export const DescriptionTab = (): JSX.Element => {
+export const SavingsPlan = (): JSX.Element => {
     const {state, dispatch}= React.useContext(CalculatorStore);
     const {numberYears, initialInvestment, rate, injectionAmount, injectionFrequency}= state; 
     const [freq, setFreq] = React.useState(injectionFrequency)
@@ -62,7 +62,6 @@ export const DescriptionTab = (): JSX.Element => {
                 />
              </div>
         </div>
-        <p>TBD Random variable interest rate</p>
         <div className="row">
             <label className="col-sm-6 text-right pr-0">Injection Amount:</label>
             <div className="col-sm-6 text-left pl-1">
@@ -91,4 +90,4 @@ export const DescriptionTab = (): JSX.Element => {
     )
 }
 
-export default DescriptionTab;
+export default SavingsPlan;

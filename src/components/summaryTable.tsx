@@ -2,17 +2,18 @@ import React from 'react'
 
 import {CalculatorStore} from '../context/calculatorStore';
 
-export const TableTab = (): JSX.Element => {
+export const SummaryTable = (): JSX.Element|null => {
     const {state}= React.useContext(CalculatorStore)
-    const { numberYears, rate, yearSavings}= state
+    const { numberYears, yearSavings, initialInvestment}= state
     const years: number[] = [];
-    let i=0;
+    let i:number =0;
     while(i<numberYears) years[i++]=i;
 
+    if (initialInvestment === 0) return null;
     return (
         <div className="card w-50">
             <h2>Yearly Summary</h2>
-            <table className="table">
+            <table className="table table-sm">
                 <thead>
                     <tr>
                         <th>Year</th>
@@ -35,4 +36,4 @@ export const TableTab = (): JSX.Element => {
     )
 }
 
-export default TableTab
+export default SummaryTable;
