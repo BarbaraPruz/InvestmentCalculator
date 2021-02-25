@@ -10,9 +10,12 @@ function App() {
     <CalculatorStoreProvider > 
       <div className="App">
         <h1>Savings Calculator</h1>
-        <div className="d-flex">
+        <div className="container">
+          <div className="row">
           <SavingsPlan />
-          <SummaryTable />          
+          <SummaryTable />  
+          </div>
+        
         </div>
         <ChartsContainer />
       </div>

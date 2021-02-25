@@ -27,13 +27,13 @@ export const SavingsComposedChart: React.FC<SavingsComposedChartProps> = (props)
         left: 5,
       }}
     >
-      <CartesianGrid stroke="#f5f5f5" />
+      <CartesianGrid stroke="#8c8c8c" strokeDasharray="3 3" />
       <XAxis dataKey="year" scale="band" />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Area type="monotone" dataKey="total" fill="#82ca9d" stroke="#8884d8" />
-      <Bar dataKey="principal" barSize={20} fill="#413ea0" />
+      <Area type="monotone" dataKey="total" fill="#82ca9d" stroke="#82ca9d" />
+      <Bar dataKey="principal" barSize={20} fill="#8884d8" />
     </ComposedChart>
   </ResponsiveContainer>
   );

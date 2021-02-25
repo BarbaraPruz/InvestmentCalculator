@@ -14,10 +14,13 @@ export const MoneyInputField: React.FC<MoneyInputFieldProps> = (props): JSX.Elem
         <CurrencyInput
             defaultValue={value}
             decimalsLimit={2}
+            prefix={'$'}
+            allowDecimals={false}
             name="money"
             onValueChange={(v:string|undefined, name?:string|undefined) => {if (v) setValue(v)}}
             onBlur={e=>props.onChange(value)}
             onKeyPress={event => {if (event.key === 'Enter') props.onChange(value)}}
+            className="w-6em"
         />
     )
 }

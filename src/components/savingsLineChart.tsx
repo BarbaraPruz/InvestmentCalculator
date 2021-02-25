@@ -29,7 +29,7 @@ export const SavingsLineChart: React.FC<SavingsLineChartProps> = (props): JSX.El
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid stroke="#8c8c8c" strokeDasharray="3 3" />
             <XAxis dataKey="year" />
             <YAxis />
             <Tooltip formatter={(value: string) => Number(value).toFixed(2)} />

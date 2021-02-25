@@ -11,7 +11,8 @@ export const SummaryTable = (): JSX.Element|null => {
 
     if (initialInvestment === 0) return null;
     return (
-        <div className="card w-50">
+        <div className="col-md-6">
+        <div className="card">
             <h2>Yearly Summary</h2>
             <table className="table table-sm">
                 <thead>
@@ -32,6 +33,7 @@ export const SummaryTable = (): JSX.Element|null => {
                     )}
                 </tbody>
             </table>
+        </div>
         </div>
     )
 }

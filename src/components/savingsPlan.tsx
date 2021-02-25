@@ -3,7 +3,7 @@ import NumberInputField from './numberInputField';
 import MoneyInputField from './moneyInputField';
 import {CalculatorStore} from '../context/calculatorStore'; 
 import {Form} from 'react-bootstrap';
-//import { InjectionFrequency } from '../global.d';
+
 enum InjectionFrequency {
     None = 0,
     Annually = 1,
@@ -20,10 +20,11 @@ export const SavingsPlan = (): JSX.Element => {
     }
 
     return (
-    <div className="card w-50">
+        <div className="col-md-6" >
+    <div className="card">
         <h2>Savings Plan</h2>
         <div className="row">
-            <label className="col-sm-6 text-right pr-0">Years to Invest:</label>
+            <label className="col-sm-6 text-right">Years to Invest:</label>
             <div className="col-sm-6 text-left pl-1">
                 <NumberInputField
                     onChange={(value:string) => dispatch({type:'SetNumberYears',years:Number(value)})}
@@ -34,7 +35,7 @@ export const SavingsPlan = (): JSX.Element => {
              </div>
         </div>
         <div className="row">
-            <label className="col-sm-6 text-right pr-0">Initial Amount:</label>
+            <label className="col-sm-6 text-right">Initial Amount:</label>
             <div className="col-sm-6 text-left pl-1">
                 <MoneyInputField
                     onChange={(value:string) => dispatch({type:'SetInitialInvestment',amount:Number(value)})}
@@ -44,7 +45,7 @@ export const SavingsPlan = (): JSX.Element => {
         </div>
 
         <div className="row">
-            <label className="col-sm-6 text-right pr-0">Annual Interest Rate(compounded monthly):</label>
+            <label className="col-sm-6 text-right">Annual Interest Rate:</label>
             <div className="col-sm-6 text-left pl-1">
                 <NumberInputField
                     onChange={(value:string) => dispatch({type:'SetRate',rate:Number(value)})}
@@ -56,7 +57,7 @@ export const SavingsPlan = (): JSX.Element => {
              </div>
         </div>
         <div className="row">
-            <label className="col-sm-6 text-right pr-0">Injection Amount:</label>
+            <label className="col-sm-6 text-right">Injection Amount:</label>
             <div className="col-sm-6 text-left pl-1">
                 <MoneyInputField
                     onChange={(value:string) => dispatch({type:'SetInjectionAmount',amount:Number(value)})}
@@ -65,7 +66,7 @@ export const SavingsPlan = (): JSX.Element => {
              </div>
         </div>
         <div className="row">
-            <label className="col-sm-6 text-right pr-0">Injection Frequency:</label>
+            <label className="col-sm-6 text-right">Injection Frequency:</label>
             <div className="col-sm-4 pl-1">
             <Form.Control as="select" size='sm' onChange={onFrequencySelected}>
                 {
@@ -76,6 +77,7 @@ export const SavingsPlan = (): JSX.Element => {
             </Form.Control>
             </div>
         </div>
+    </div>
     </div>
     )
 }

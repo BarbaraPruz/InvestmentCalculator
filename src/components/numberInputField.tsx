@@ -14,7 +14,7 @@ export const NumberInputField: React.FC<NumberInputFieldProps> = (props): JSX.El
 
     return (
         <input 
-            className="w-4em"
+            className="w-2em"
             type="number"
             min={props.min}
             max={props.max}

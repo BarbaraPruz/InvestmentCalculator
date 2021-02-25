@@ -29,12 +29,6 @@ h2, h3 {
   padding-top: 50px;
 }
 
-input {
-  color: var(--font-color);
-  background: var(--bg2-color);
-  border: none;
-}
-
 .inline-label {
   margin-right: 5px;
 }
@@ -51,7 +45,8 @@ input {
   border: 1px solid lightblue;
   border-radius: 5px;
   padding: 10px;
-  margin: 15px;
+  margin: 15px 15px 5px 15px; 
+  height: 90%;
 }
 
 .timespan {
