@@ -12,10 +12,9 @@ function App() {
         <h1>Savings Calculator</h1>
         <div className="container">
           <div className="row">
-          <SavingsPlan />
-          <SummaryTable />  
-          </div>
-        
+            <SavingsPlan />
+            <SummaryTable />  
+          </div>       
         </div>
         <ChartsContainer />
       </div>

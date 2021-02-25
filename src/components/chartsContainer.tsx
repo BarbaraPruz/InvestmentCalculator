@@ -34,17 +34,17 @@ export const ChartsContainer = (): JSX.Element|null => {
   });
 
   return (
-    <div className="card" style={{height:"370px"}}>
-      <div className="d-flex w-100" style={{height:"300px"}}>
-        <div style={{width:"33%"}}>
+    <div className="container" >
+      <div className="row" style={{height:"380px"}}>
+        <div className="col-md-4 card" style={{marginRight: 0, marginLeft:0, height:"350px"}}>
         <h2>Total Savings</h2>
         <SavingsLineChart data={data} />          
         </div>
-        <div style={{width:"33%"}}>
+        <div className="col-md-4 card"  style={{marginRight: 0, marginLeft:0, height:"350px"}}>
           <h2>Principal and Interest</h2>
           <SavingsBarChart data={data}/>          
         </div>
-        <div style={{width:"33%"}}>
+        <div className="col-md-4 card" style={{marginRight: 0, marginLeft:0, height:"350px"}} >
           <h2>Principal vs Total</h2>
           <SavingsComposedChart data={data}/>          
         </div>
