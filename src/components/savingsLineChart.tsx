@@ -27,6 +27,7 @@ export const SavingsLineChart: React.FC<SavingsLineChartProps> = (
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
+        // eslint-disable-next-line react/prop-types
         data={props.data}
         margin={{
           top: 5,

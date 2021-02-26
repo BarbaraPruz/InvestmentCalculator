@@ -9,6 +9,7 @@ interface MoneyInputFieldProps {
 export const MoneyInputField: React.FC<MoneyInputFieldProps> = (
   props
 ): JSX.Element => {
+  // eslint-disable-next-line react/prop-types
   const [value, setValue] = React.useState<string>(props.initialValue);
 
   return (
@@ -21,8 +22,10 @@ export const MoneyInputField: React.FC<MoneyInputFieldProps> = (
       onValueChange={(v: string | undefined) => {
         if (v) setValue(v);
       }}
+      // eslint-disable-next-line react/prop-types
       onBlur={() => props.onChange(value)}
       onKeyPress={(event) => {
+        // eslint-disable-next-line react/prop-types
         if (event.key === "Enter") props.onChange(value);
       }}
       className="w-6em"

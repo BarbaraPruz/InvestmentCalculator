@@ -7,6 +7,7 @@ interface TextInputFieldProps {
 export const TextInputField: React.FC<TextInputFieldProps> = (
   props
 ): JSX.Element => {
+  // eslint-disable-next-line react/prop-types
   const [value, setValue] = React.useState(props.initialValue);
 
   return (
