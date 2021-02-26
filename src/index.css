@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 
 :root {
   --font-color: #ffffff;
@@ -14,23 +14,17 @@ body {
   padding: 25px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-align: center;
   color: var(--font2-color);
 }
 
-h2, h3 {
+h2,
+h3 {
   font-weight: 200 !important;
   font-size: 1.75rem !important;
-}
-
-
-.tab-content {
-  padding-top: 50px;
-}
-
-.inline-label {
-  margin-right: 5px;
 }
 
 .w-6em {
@@ -45,33 +39,6 @@ h2, h3 {
   border: 1px solid lightblue;
   border-radius: 5px;
   padding: 10px;
-  margin: 15px 15px 5px 15px; 
+  margin: 15px 15px 5px 15px;
   height: 90%;
 }
-
-.timespan {
-  width: 40%;
-  margin: auto;
-}
-
-.investmentClass-card {
-  border: 1px solid lightgray;
-  width: 350px;
-  margin: 5px;
-  padding: 10px;
-}
-
-.investmentClass-summary {
-  display: grid;
-  grid-template-columns: 150px 150px;
-  border: 1px solid var(--bg2-color);
-  padding: 5px;
-}
-
-.investmentCategory-details {
-  display: grid;
-  grid-template-columns: 150px 150px;
-  border: 1px solid var(--bg2-color);
-  padding: 5px;
-}
-

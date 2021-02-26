@@ -1,24 +1,24 @@
-import React from 'react';
-import {CalculatorStoreProvider} from './context/calculatorStore';
+import React from "react";
+import { CalculatorStoreProvider } from "./context/calculatorStore";
 
-import SavingsPlan from './components/savingsPlan'
-import SummaryTable from './components/summaryTable'
-import ChartsContainer from './components/chartsContainer'
+import SavingsPlan from "./components/savingsPlan";
+import SummaryTable from "./components/summaryTable";
+import ChartsContainer from "./components/chartsContainer";
 
-function App() {
+function App(): JSX.Element {
   return (
-    <CalculatorStoreProvider > 
-      <div className="App">
+    <CalculatorStoreProvider>
+      <div>
         <h1>Savings Calculator</h1>
         <div className="container">
           <div className="row">
             <SavingsPlan />
-            <SummaryTable />  
-          </div>       
+            <SummaryTable />
+          </div>
         </div>
         <ChartsContainer />
       </div>
-     </CalculatorStoreProvider> 
+    </CalculatorStoreProvider>
   );
 }
 

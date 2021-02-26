@@ -1,11 +1,11 @@
 import React from "react";
 
-import SavingsLineChart from './savingsLineChart'
-import SavingsBarChart from './savingsBarChart'
-import SavingsComposedChart from './savingsComposedChart'
+import SavingsLineChart from "./savingsLineChart";
+import SavingsBarChart from "./savingsBarChart";
+import SavingsComposedChart from "./savingsComposedChart";
 import { CalculatorStore } from "../context/calculatorStore";
 
-export const ChartsContainer = (): JSX.Element|null => {
+export const ChartsContainer = (): JSX.Element | null => {
   const { state } = React.useContext(CalculatorStore);
   const { yearSavings, initialInvestment } = state;
 
@@ -22,8 +22,8 @@ export const ChartsContainer = (): JSX.Element|null => {
     return acc;
   };
 
-  if (initialInvestment===0) return null;
-  let data = yearSavings.map((y, i) => {
+  if (initialInvestment === 0) return null;
+  const data = yearSavings.map((y, i) => {
     return {
       year: `${i + 1}`,
       principal: getPrincipal(i),
@@ -34,19 +34,28 @@ export const ChartsContainer = (): JSX.Element|null => {
   });
 
   return (
-    <div className="container" >
-      <div className="row" style={{height:"380px"}}>
-        <div className="col-md-4 card" style={{marginRight: 0, marginLeft:0, height:"350px"}}>
-        <h2>Total Savings</h2>
-        <SavingsLineChart data={data} />          
+    <div className="container">
+      <div className="row" style={{ height: "380px" }}>
+        <div
+          className="col-md-4 card"
+          style={{ marginRight: 0, marginLeft: 0, height: "350px" }}
+        >
+          <h2>Total Savings</h2>
+          <SavingsLineChart data={data} />
         </div>
-        <div className="col-md-4 card"  style={{marginRight: 0, marginLeft:0, height:"350px"}}>
+        <div
+          className="col-md-4 card"
+          style={{ marginRight: 0, marginLeft: 0, height: "350px" }}
+        >
           <h2>Principal and Interest</h2>
-          <SavingsBarChart data={data}/>          
+          <SavingsBarChart data={data} />
         </div>
-        <div className="col-md-4 card" style={{marginRight: 0, marginLeft:0, height:"350px"}} >
+        <div
+          className="col-md-4 card"
+          style={{ marginRight: 0, marginLeft: 0, height: "350px" }}
+        >
           <h2>Principal vs Total</h2>
-          <SavingsComposedChart data={data}/>          
+          <SavingsComposedChart data={data} />
         </div>
       </div>
     </div>
