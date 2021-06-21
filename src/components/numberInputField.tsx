@@ -7,6 +7,7 @@ interface NumberInputFieldProps {
   initialValue: string;
   step?: string;
   onChange: (value: string) => void;
+  htmlId: string;
 }
 
 export const NumberInputField: React.FC<NumberInputFieldProps> = (
@@ -16,6 +17,7 @@ export const NumberInputField: React.FC<NumberInputFieldProps> = (
 
   return (
     <input
+      id={props.htmlId}
       className="w-2em"
       type="number"
       min={props.min}
